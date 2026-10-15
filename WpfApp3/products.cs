@@ -27,7 +27,17 @@ namespace WpfApp3
         public string description { get; set; }
         public string composition { get; set; }
         public decimal price { get; set; }
-    
+        public string ProductPhotoPath
+        {
+            get
+            {
+                if (image_path == null)
+                    return null;
+
+                return "/properties/Images/" + image_path;
+            }
+        }
+
         public virtual manufacturers manufacturers { get; set; }
         public virtual subcategories subcategories { get; set; }
         public virtual ICollection<stock_items> stock_items { get; set; }

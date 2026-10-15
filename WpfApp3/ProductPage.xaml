@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp3"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1200"
       Title="ProductPage">
 
     <Grid>
@@ -20,31 +20,26 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
+
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.ColumnSpan="3">
 
 
-            <StackPanel Margin="10" Orientation="Horizontal">
-                <TextBlock Text="поиск по наименованию" FontSize="15" Foreground="#3E2C23" FontFamily="Times New Roman"></TextBlock>
-                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
-                 Width="250" FontSize="15" BorderBrush="#D9CCBC" BorderThickness="2"></TextBox>
-            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal"/>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <ComboBox Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged" BorderBrush="#D9CCBC" BorderThickness="2"
-                  FontSize="15" Width="300" FontFamily="Times New Roman">
-                    <TextBlock>сортировка</TextBlock>
-                    <TextBlock>от А до Я</TextBlock>
-                    <TextBlock>от Я до А</TextBlock>
-                </ComboBox>
-            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10"/>
         </WrapPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="20,20,0,0">
+            <TextBlock x:Name="FIOTB" FontSize="15" FontWeight="Bold" Margin="0,5,0,0" />
+            <TextBlock Text="Вы авторизованы как: " FontSize="15" Margin="0,10,0,0" />
+            <TextBlock x:Name="RoleTB" FontSize="15" FontWeight="Bold" Margin="0,5,0,0" />
+        </StackPanel>
 
 
         <ListView Name ="ProductListView" Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="AgentsListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#D9CCBC" BorderThickness="1" Margin="5" CornerRadius="0">
+                    <Border BorderBrush="#70B2AF" BorderThickness="1" Margin="5" CornerRadius="0">
                         <Grid ShowGridLines="False" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -59,27 +54,39 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
+                            <Image Width="100" Height="100" Grid.Column="0" Grid.RowSpan="4" HorizontalAlignment="Center">
+                                <Image.Source>
+                                    <Binding Path="ProductPhotoPath">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>
+                                                /properties/Images/IMG_KB_164811.png
+                                            </ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding product_name}" FontSize="17" FontWeight="SemiBold" Foreground="#3E2C23" Margin="5" FontFamily="Times New Roman"></TextBlock>
+                                <TextBlock Text="{Binding product_name}" FontSize="17" FontWeight="SemiBold" Foreground="Black" Margin="5" FontFamily="Calibri"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding composition}" FontSize="13" Foreground="#8A7566" TextWrapping="Wrap" Margin="5" FontFamily="Times New Roman"></TextBlock>
+                                <TextBlock Text="{Binding composition}" FontSize="13" Foreground="Black" TextWrapping="Wrap" Margin="5" FontFamily="Calibri"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding description}" FontSize="13" Foreground="#8A7566" TextWrapping="Wrap" Margin="5" FontFamily="Times New Roman"></TextBlock>
+                                <TextBlock Text="{Binding description}" FontSize="13" Foreground="Black" TextWrapping="Wrap" Margin="5" FontFamily="Calibri"></TextBlock>
                             </StackPanel>
 
-                            <TextBlock Text="{Binding TotalQuantity, StringFormat=В наличии: {0} шт.}" FontSize="13" HorizontalAlignment="Right" Foreground="#8A7566" TextWrapping="Wrap" Margin="5" FontFamily="Times New Roman" Grid.Column="1" Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding TotalQuantity, StringFormat=В наличии: {0} шт.}" FontSize="13" HorizontalAlignment="Right" Foreground="ForestGreen" TextWrapping="Wrap" Margin="5" FontFamily="Calibri" Grid.Column="1" Grid.Row="0"></TextBlock>
 
-                            <TextBlock Text="{Binding price, StringFormat={}{0} ₽ pc}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" FontSize="15" FontWeight="Bold" Foreground="#B07D48" FontFamily="Times New Roman"></TextBlock>
-                            
+                            <TextBlock Text="{Binding price, StringFormat={}{0} ₽ pc}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" FontSize="15" FontWeight="Bold" Foreground="Green" FontFamily="Calibri"></TextBlock>
+
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" >
-            <Button Name="LeftDirButton" Content="&lt;" Width="25" Height="35" Click="LeftDirButton_Click" FontFamily="Times New Roman"/>
+            <Button Name="LeftDirButton" Content="&lt;" Width="25" Height="35" Click="LeftDirButton_Click" FontFamily="Calibri"/>
             <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -87,7 +94,16 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
             </ListBox>
-            <Button Name="RightDirButton" Content="&gt;" Width="25" Height="35" Click="RightDirButton_Click" FontFamily="Times New Roman"/>
+            <Button Name="RightDirButton" Content="&gt;" Width="25" Height="35" Click="RightDirButton_Click" FontFamily="Calibri"/>
         </StackPanel>
+        <ComboBox x:Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged" BorderBrush="#70B2AF" BorderThickness="2"
+                  FontSize="15" FontFamily="Calibri" Grid.Column="2" Margin="10,86,90,10">
+            <TextBlock><Run Text="сортировка"/></TextBlock>
+            <TextBlock><Run Text="от А до Я"/></TextBlock>
+            <TextBlock><Run Text="от Я до А"/></TextBlock>
+        </ComboBox>
+        <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                 FontSize="15" BorderBrush="#70B2AF" BorderThickness="2" RenderTransformOrigin="0.475,0.459" Grid.Column="1" Margin="75,86,75,10"/>
+        <TextBlock Text="поиск по наименованию" FontSize="15" Foreground="#3E2C23" FontFamily="Calibri" Grid.Column="1" Margin="75,60,167,42"/>
     </Grid>
 </Page>

@@ -20,10 +20,28 @@ namespace WpfApp3
     /// </summary>
     public partial class ProductPage : Page
     {
-        public ProductPage()
+        public ProductPage(users users)
         {
             InitializeComponent();
-            var currentProducts = IshbulatovShoesEntities.GetContext().products.ToList();
+
+            FIOTB.Text = users.last_name + " " + users.first_name + " " + users.middle_name;
+            switch (users.role_id)
+            {
+                case 1:
+                    RoleTB.Text = "Клиент";
+                    break;
+                case 2:
+                    RoleTB.Text = "Менеджер";
+                    break;
+                case 3:
+                    RoleTB.Text = "Администратор";
+                    break;
+                default:
+                    RoleTB.Text = "Гость";
+                    break;
+            }
+
+            var currentProducts = IshbulatovShoesEntities1.GetContext().products.ToList();
             ProductListView.ItemsSource = currentProducts;
 
             ComboSort.SelectedIndex = 0;
@@ -32,7 +50,7 @@ namespace WpfApp3
         }
     private void UpdateProducts()
         {
-            var currentProducts = IshbulatovShoesEntities.GetContext().products.ToList();
+            var currentProducts = IshbulatovShoesEntities1.GetContext().products.ToList();
 
             string NormalniyProduct(string product_name) //с помощью replace заменяем пробелы на ничего получается простоо убираем их
             {

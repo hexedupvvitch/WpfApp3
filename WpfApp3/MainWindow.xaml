@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#F7F3EE">
+        Title="MainWindow" Height="450" Width="800" Background="#FFFFFF">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="#D9CCBC" BorderThickness="2" Grid.Row="2"></Border>
-        <TextBlock Text="Da Shuz" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#3E2C23" FontFamily="Rockwell Condensed"></TextBlock>
+        <TextBlock Text="Da Shuz" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#3E2C23" FontFamily="Calibri"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" Width="175" Height="30" HorizontalAlignment="Right" Margin="5" Click="BtnBack_Click" FontFamily="Rockwell Condensed"></Button>
     </Grid>

@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuthPage.xaml.cs">
+      <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="categories.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -69,10 +72,20 @@
     <Compile Include="manufacturers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -102,6 +115,10 @@
     <Compile Include="users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,16 +137,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -164,19 +171,51 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Properties\Images\IMG_KB_164811.png" />
+    <Resource Include="Properties\Images\IMG_KB_164816.png" />
+    <Resource Include="Properties\Images\IMG_KB_185501.png" />
+    <Resource Include="Properties\Images\IMG_KSd_185508.png" />
+    <Resource Include="Properties\Images\IMG_KSd_195207.png" />
+    <Resource Include="Properties\Images\IMG_KSho_185512.png" />
+    <Resource Include="Properties\Images\IMG_KS_195213.png" />
+    <Resource Include="Properties\Images\IMG_KS_195217.png" />
+    <Resource Include="Properties\Images\IMG_KS_195222.png" />
+    <Resource Include="Properties\Images\IMG_MB_174349.png" />
+    <Resource Include="Properties\Images\IMG_MB_191200.png" />
+    <Resource Include="Properties\Images\IMG_MB_191205.png" />
+    <Resource Include="Properties\Images\IMG_MSho_190514.png" />
+    <Resource Include="Properties\Images\IMG_MSho_190518.png" />
+    <Resource Include="Properties\Images\IMG_MSho_191612.png" />
+    <Resource Include="Properties\Images\IMG_MS_185531.png" />
+    <Resource Include="Properties\Images\IMG_MS_185532.png" />
+    <Resource Include="Properties\Images\IMG_MS_185533.png" />
+    <Resource Include="Properties\Images\IMG_WB_170859.png" />
+    <Resource Include="Properties\Images\IMG_WB_170905.png" />
+    <Resource Include="Properties\Images\IMG_WB_170906.png" />
+    <Resource Include="Properties\Images\IMG_WSd_174332.png" />
+    <Resource Include="Properties\Images\IMG_WSd_185156.png" />
+    <Resource Include="Properties\Images\IMG_WSd_185551.png" />
+    <Resource Include="Properties\Images\IMG_WSho_174409.png" />
+    <Resource Include="Properties\Images\IMG_WSho_185202.png" />
+    <Resource Include="Properties\Images\IMG_WSho_185545.png" />
+    <Resource Include="Properties\Images\IMG_WS_174110.png" />
+    <Resource Include="Properties\Images\IMG_WS_185528.png" />
+    <Resource Include="Properties\Images\IMG_WS_185535.png" />
+    <Resource Include="Properties\Images\IMG_WS_185538.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,8 @@
             <Setter Property="Width" Value="175"></Setter>
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Background" Value="#B07D48"></Setter>
+            <Setter Property="Background" Value="#70B2AF"></Setter>
+            <Setter Property="FontFamily" Value="Calibri"></Setter>
         </Style>
     </Application.Resources>
 </Application>
