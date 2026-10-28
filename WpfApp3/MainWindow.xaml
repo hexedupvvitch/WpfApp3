@@ -14,6 +14,11 @@
         </Grid.RowDefinitions>
         <Border BorderBrush="#D9CCBC" BorderThickness="2" Grid.Row="2"></Border>
         <TextBlock Text="Da Shuz" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#3E2C23" FontFamily="Calibri"></TextBlock>
+        <Button x:Name="CartButton" Content="Корзина" Width="100" Height="30" 
+        HorizontalAlignment="Left"  
+        Background="#70B2AF"
+        Click="Button_Click"/>
+        <Button x:Name="OrdersButton" Content="Заказы" Width="100" Height="30" Background="#70B2AF"  Click="OrdersButton_Click" Margin="110,5,590,5"/>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" Width="175" Height="30" HorizontalAlignment="Right" Margin="5" Click="BtnBack_Click" FontFamily="Rockwell Condensed"></Button>
     </Grid>

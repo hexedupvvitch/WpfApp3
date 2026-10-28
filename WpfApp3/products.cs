@@ -9,6 +9,7 @@
 
 namespace WpfApp3
 {
+    using System.Linq;
     using System;
     using System.Collections.Generic;
     
@@ -27,17 +28,36 @@ namespace WpfApp3
         public string description { get; set; }
         public string composition { get; set; }
         public decimal price { get; set; }
-        public string ProductPhotoPath
+
+        // Строка с доступными размерами (только те, где есть остаток > 0)
+        public string AvailableSizes
         {
             get
             {
-                if (image_path == null)
-                    return null;
+                if (stock_items == null || !stock_items.Any()) return "Нет в наличии";
 
-                return "/properties/Images/" + image_path;
+                // Берем только те размеры, где количество больше нуля, и склеиваем через запятую
+                var sizes = stock_items.Where(s => s.quantity > 0)
+                                       .Select(s => s.sizes.size_value.ToString())
+                                       .ToList();
+
+                return sizes.Any() ? string.Join(", ", sizes) : "Нет в наличии";
             }
         }
 
+        public string Sizes
+        {
+            get
+            {
+                string sizes = string.Empty;
+                foreach (var stockItem in stock_items)
+                {
+                    sizes += stockItem.sizes.size_value + ", ";
+                }
+                return sizes;
+            }
+        }
+    
         public virtual manufacturers manufacturers { get; set; }
         public virtual subcategories subcategories { get; set; }
         public virtual ICollection<stock_items> stock_items { get; set; }

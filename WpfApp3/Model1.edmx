@@ -480,7 +480,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="IshbulatovShoesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="IshbulatovShoesEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="categories" EntityType="Self.categories" />
           <EntitySet Name="manufacturers" EntityType="Self.manufacturers" />
           <EntitySet Name="order_items" EntityType="Self.order_items" />
@@ -533,7 +533,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище IshbulatovShoesModelContainer" CdmEntityContainer="IshbulatovShoesEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище IshbulatovShoesModelContainer" CdmEntityContainer="IshbulatovShoesEntities2">
           <EntitySetMapping Name="categories">
             <EntityTypeMapping TypeName="IshbulatovShoesModel.categories">
               <MappingFragment StoreEntitySet="categories">

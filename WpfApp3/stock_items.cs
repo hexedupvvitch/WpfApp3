@@ -23,7 +23,23 @@ namespace WpfApp3
         public int product_id { get; set; }
         public int size_id { get; set; }
         public int quantity { get; set; }
-    
+
+        public string Size
+        {
+            get
+            {
+                return sizes.size_value.ToString();
+            }
+        }
+
+        public string SizeWithQuantity
+        {
+            get
+            {
+                return $"{sizes.size_value} (осталось {quantity} шт.)";
+            }
+        }
+
         public virtual ICollection<order_items> order_items { get; set; }
         public virtual products products { get; set; }
         public virtual sizes sizes { get; set; }

@@ -13,18 +13,20 @@ namespace WpfApp3
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IshbulatovShoesEntities : DbContext
+    public partial class IshbulatovShoesEntities2 : DbContext
     {
-        public static IshbulatovShoesEntities _context;
-
-        public static IshbulatovShoesEntities GetContext()
+        public static IshbulatovShoesEntities2 _context;
+        
+        public static IshbulatovShoesEntities2 GetContext()
         {
             if (_context == null)
-                _context = new IshbulatovShoesEntities();
+            {
+                _context = new IshbulatovShoesEntities2();
+            }
             return _context;
         }
-        public IshbulatovShoesEntities()
-            : base("name=IshbulatovShoesEntities")
+        public IshbulatovShoesEntities2()
+            : base("name=IshbulatovShoesEntities2")
         {
         }
     

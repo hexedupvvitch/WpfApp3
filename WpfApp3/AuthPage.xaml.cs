@@ -27,54 +27,37 @@ namespace WpfApp3
         }
         private void GuestAuthButton_Click(object sender, RoutedEventArgs e)
         {
-            users guestUser = new users
-            {
-                user_id = 0,
-                login = "guest",
-                first_name = "Гость",
-                last_name = "",
-                middle_name = "",
-                role_id = 0
-            };
-
             LoginTextBox.Text = "";
 
-            // Переходим на страницу товаров
-            Manager.MainFrame.Navigate(new ProductPage(guestUser));
+            
+            Manager.MainFrame.Navigate(new ProductPage(null));
         }
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
             string login = LoginTextBox.Text.Trim();
 
-            // Проверка на пустые поля
             if (string.IsNullOrEmpty(login))
             {
-                MessageBox.Show("Введите логин!", "Ошибка",
-                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Введите логин!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Поиск пользователя в БД
-            users user = IshbulatovShoesEntities1.GetContext().users
+            users user = IshbulatovShoesEntities2.GetContext().users
                 .FirstOrDefault(p => p.login == LoginTextBox.Text);
 
             if (user != null)
             {
-                // Успешный вход
                 LoginTextBox.Text = "";
-                Manager.MainFrame.Navigate(new ProductPage(user));
+
+                // Сохраняем текущего пользователя (пригодится для корзины)
+                Manager.CurrentUser = user;
+
+                Manager.MainFrame.Navigate(new ProductPage(user)); // Переход ТОЛЬКО здесь
             }
             else
             {
-                // Неверный логин или пароль
                 failedAttempts++;
-
-                if (failedAttempts == 1)
-                {
-                    // Первая неудачная попытка — показываем капчу
-                    MessageBox.Show("Введены неверные данные!",
-                                  "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                MessageBox.Show("Введены неверные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 LoginTextBox.Text = "";
             }
         }

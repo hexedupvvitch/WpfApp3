@@ -1,71 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static WpfApp3.Manager;
 
 namespace WpfApp3
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductPage.xaml
-    /// </summary>
     public partial class ProductPage : Page
     {
+        // Свойство для скрытия кнопок в XAML
+        public bool IsAuthorized => Manager.CurrentUser != null && Manager.CurrentUser.role_id != 0;
+
         public ProductPage(users users)
         {
             InitializeComponent();
+            this.DataContext = this;
 
-            FIOTB.Text = users.last_name + " " + users.first_name + " " + users.middle_name;
-            switch (users.role_id)
+            Manager.CurrentUser = users;
+
+            if (users == null || users.role_id == 0)
             {
-                case 1:
-                    RoleTB.Text = "Клиент";
-                    break;
-                case 2:
-                    RoleTB.Text = "Менеджер";
-                    break;
-                case 3:
-                    RoleTB.Text = "Администратор";
-                    break;
-                default:
-                    RoleTB.Text = "Гость";
-                    break;
-            }
+                TBoxSearch.Visibility = Visibility.Collapsed;
+                ComboSort.Visibility = Visibility.Collapsed;
 
-            var currentProducts = IshbulatovShoesEntities1.GetContext().products.ToList();
-            ProductListView.ItemsSource = currentProducts;
+                FIOTB.Text = "Гость";
+                RoleTB.Text = "Неавторизованный";
+            }
+            else
+            {
+                FIOTB.Text = $"{users.last_name} {users.first_name} {users.middle_name}";
+                switch (users.role_id)
+                {
+                    case 3: RoleTB.Text = "Клиент"; break;
+                    case 2: RoleTB.Text = "Менеджер"; break;
+                    case 1: RoleTB.Text = "Администратор"; break;
+                    default: RoleTB.Text = "Гость"; break;
+                }
+            }
 
             ComboSort.SelectedIndex = 0;
-
             UpdateProducts();
         }
-    private void UpdateProducts()
-        {
-            var currentProducts = IshbulatovShoesEntities1.GetContext().products.ToList();
 
-            string NormalniyProduct(string product_name) //с помощью replace заменяем пробелы на ничего получается простоо убираем их
+        private void UpdateProducts()
+        {
+            var context = IshbulatovShoesEntities2.GetContext();
+
+            // Загружаем товары вместе с размерами (Include)
+            var currentProducts = context.products.Include("stock_items").ToList();
+
+            // Поиск (проверяем, не пустой ли текст)
+            if (!string.IsNullOrEmpty(TBoxSearch.Text))
             {
-                return product_name.Replace(" ", "");
+                currentProducts = currentProducts.Where(p => p.product_name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             }
 
-            //приводим название к нижнему регистру и код просматривает есть ли буква в адресе почты или названии
-            currentProducts = currentProducts.Where(p => p.product_name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList(); //Tbox это само поле ввода, а text это переменная которая хранит то что написано внутри
-
-            ProductListView.ItemsSource = currentProducts.ToList();
-
+            // Сортировка
             if (ComboSort.SelectedIndex == 1)
-                currentProducts = currentProducts.OrderBy(p => p.product_name).ToList(); //сортировка по возрастанию
+                currentProducts = currentProducts.OrderBy(p => p.product_name).ToList();
             if (ComboSort.SelectedIndex == 2)
-                currentProducts = currentProducts.OrderByDescending(p => p.product_name).ToList(); //сортировка по убыванию
+                currentProducts = currentProducts.OrderByDescending(p => p.product_name).ToList();
 
             ProductListView.ItemsSource = currentProducts;
             TableList = currentProducts;
@@ -73,75 +69,82 @@ namespace WpfApp3
         }
 
         int CountRecords, CountPage, CurrentPage = 0;
-        const int RecordsPage = 10; //количество записей на странице всегда 10
+        const int RecordsPage = 10;
         List<products> CurrentPageList = new List<products>();
         List<products> TableList;
+
         public void ChangePage(int direction, int? selectedPage)
         {
+            if (TableList == null) return;
+
             CurrentPageList.Clear();
-            CountRecords = TableList.Count; //записываем сколько всего записей в таблице
-            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage; // вычисляем сколько всего страниц получится
+            CountRecords = TableList.Count;
+            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage;
 
             if (selectedPage.HasValue && selectedPage >= 0 && selectedPage < CountPage)
-                CurrentPage = selectedPage.Value; //проверка на выбор существующей страницы или номер страницы не отрицательный, если проверка удачная, переходим на выбранную страницу
+                CurrentPage = selectedPage.Value;
             else if (direction == 1 && CurrentPage > 0)
-                CurrentPage--; //иначе есил нажали влево и текущая страница не первая, то номер страницы уменьшается на 1
+                CurrentPage--;
             else if (direction == 2 && CurrentPage < CountPage - 1)
-                CurrentPage++; //иначе есил нажали вправо и текущая страница не последняя, то номер страницы увеличивается на 1
+                CurrentPage++;
             else
-                return;//если ни одно условие не подошло, то ничего не делается
+                return;
 
-            int start = CurrentPage * RecordsPage; //вычисляется индекс первого агента на странице
-            int end = Math.Min(start + RecordsPage, CountRecords);//берем наименьшее из start+recordspage или countrecords чтобы не выйти за границы списка
+            int start = CurrentPage * RecordsPage;
+            int end = Math.Min(start + RecordsPage, CountRecords);
             for (int i = start; i < end; i++)
-                CurrentPageList.Add(TableList[i]);//берем агента из списка и добавляем его в текущую страницу
+                CurrentPageList.Add(TableList[i]);
 
-            PageListBox.Items.Clear();//очистка списка номеров страниц
+            PageListBox.Items.Clear();
             for (int i = 1; i <= CountPage; i++)
-                PageListBox.Items.Add(i);//добавляем номер страницы в список
+                PageListBox.Items.Add(i);
             PageListBox.SelectedIndex = CurrentPage;
             ProductListView.ItemsSource = CurrentPageList;
-            ProductListView.Items.Refresh();//перезагрузка списка чтобы видеть изменения
+            ProductListView.Items.Refresh();
         }
 
-        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateProducts();
-        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e) => UpdateProducts();
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateProducts();
 
-        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateProducts();
-        }
-
-        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateProducts();
-        }
-
-        private void AgentsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateProducts();
-        }
-
-        private void EditBtn_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateProducts();
-        }
-
-        private void RightDirButton_Click(object sender, RoutedEventArgs e)
-        {
-            ChangePage(2, null);
-        }
-
-        private void LeftDirButton_Click(object sender, RoutedEventArgs e)
-        {
-            ChangePage(1, null);
-        }
+        private void RightDirButton_Click(object sender, RoutedEventArgs e) => ChangePage(2, null);
+        private void LeftDirButton_Click(object sender, RoutedEventArgs e) => ChangePage(1, null);
 
         private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1); //convert берет стринговую цифру и превращает ее в инт, отнимает 1 потому что компьютер начинает отсчет не с 1 а с 0
+            if (PageListBox.SelectedItem != null)
+                ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
+        }
+
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var product = button.Tag as products;
+
+            var parent = button.Parent as Grid;
+            var sizeCombo = parent.Children.OfType<ComboBox>().FirstOrDefault(c => c.Name == "SizeComboBox");
+
+            if (sizeCombo == null || sizeCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите размер!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var selectedStock = sizeCombo.SelectedItem as stock_items;
+
+            var existingItem = Manager.CurrentCart.FirstOrDefault(c => c.StockItem.stock_item_id == selectedStock.stock_item_id);
+
+            if (existingItem != null)
+            {
+                if (existingItem.Quantity < selectedStock.quantity)
+                    existingItem.Quantity++;
+                else
+                    MessageBox.Show($"Больше нет на складе! Максимум: {selectedStock.quantity}", "Стоп", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                Manager.CurrentCart.Add(new CartItem { StockItem = selectedStock, Quantity = 1 });
+                MessageBox.Show($"Добавлено: {product.product_name}, Размер: {selectedStock.Size}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

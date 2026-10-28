@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp3"
       mc:Ignorable="d" 
-      d:DesignHeight="200" d:DesignWidth="450" Background="#"
+      d:DesignHeight="200" d:DesignWidth="450"
       Height="200" Width="450"
       Title="AuthPage">
 
@@ -30,6 +30,6 @@
         <TextBox x:Name="LoginTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150"></TextBox>
 
         <Button Name="AuthButton" Click="AuthButton_Click" FontSize="10" Height="16" Grid.Row="4" Content="Войти" HorizontalAlignment="Left" Width="69" VerticalAlignment="Center" Grid.Column="1" Margin="5,0,0,0"/>
-        <Button Name="GuestAuthButton" Click="AuthButton_Click" FontSize="10" Height="16" Grid.Row="4" Content="Войти как гость" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="76,0,0,0" Width="69" Grid.Column="1"/>
+        <Button Name="GuestAuthButton" Click="GuestAuthButton_Click" FontSize="10" Height="16" Grid.Row="4" Content="Войти как гость" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="76,0,0,0" Width="69" Grid.Column="1"/>
     </Grid>
 </Page>

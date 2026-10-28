@@ -23,6 +23,38 @@ namespace WpfApp3
         public MainWindow()
         {
             InitializeComponent();
+
+            MainFrame.Navigated += (s, e) =>
+            {
+                // 1. Если мы на странице логина — прячем ВСЕ кнопки
+                if (e.Content is AuthPage)
+                {
+                    CartButton.Visibility = Visibility.Collapsed;
+                    OrdersButton.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
+                var user = Manager.CurrentUser;
+
+                // 2. ГОСТЬ (нет юзера или role_id = 0)
+                if (user == null || user.role_id == 0)
+                {
+                    CartButton.Visibility = Visibility.Collapsed;   // Гость не видит корзину
+                    OrdersButton.Visibility = Visibility.Collapsed; // Гость не видит заказы
+                }
+                // 3. КЛИЕНТ (role_id = 1)
+                else if (user.role_id == 1)
+                {
+                    CartButton.Visibility = Visibility.Visible;     // Клиент видит корзину
+                    OrdersButton.Visibility = Visibility.Visible;   // Клиент видит свои заказы
+                }
+                // 4. МЕНЕДЖЕР и АДМИН (role_id = 2 или 3)
+                else if (user.role_id == 2 || user.role_id == 3)
+                {
+                    CartButton.Visibility = Visibility.Visible;     // Видят корзину
+                    OrdersButton.Visibility = Visibility.Visible;   // Видят все заказы
+                }
+            };
             MainFrame.Navigate(new AuthPage());
             Manager.MainFrame = MainFrame;
         }
@@ -41,6 +73,16 @@ namespace WpfApp3
             {
                 BtnBack.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Переходим на страницу корзины
+            Manager.MainFrame.Navigate(new CartPage());
+        }
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new OrdersPage());
         }
     }
 }
