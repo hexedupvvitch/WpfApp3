@@ -43,6 +43,13 @@
         </ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+
+            <!-- Выбор клиента (виден только Менеджеру и Админу) -->
+            <StackPanel x:Name="ClientPanel" Orientation="Horizontal" Margin="0,0,20,0">
+                <TextBlock Text="Оформить на клиента: " FontSize="16" VerticalAlignment="Center"/>
+                <ComboBox Name="ClientComboBox" Width="200" Height="30" DisplayMemberPath="last_name" SelectedValuePath="user_id"/>
+            </StackPanel>
+
             <TextBlock Text="Итого: " FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
             <TextBlock Name="TotalSumText" FontSize="18" FontWeight="Bold" Foreground="Green" VerticalAlignment="Center" Margin="5,0,20,0"/>
             <Button Content="Оформить заказ" Click="Checkout_Click" Background="#70B2AF" Foreground="White" Width="150" Height="40"/>

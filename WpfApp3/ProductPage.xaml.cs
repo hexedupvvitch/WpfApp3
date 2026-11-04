@@ -10,7 +10,6 @@ namespace WpfApp3
 {
     public partial class ProductPage : Page
     {
-        // Свойство для скрытия кнопок в XAML
         public bool IsAuthorized => Manager.CurrentUser != null && Manager.CurrentUser.role_id != 0;
 
         public ProductPage(users users)
@@ -48,10 +47,8 @@ namespace WpfApp3
         {
             var context = IshbulatovShoesEntities2.GetContext();
 
-            // Загружаем товары вместе с размерами (Include)
             var currentProducts = context.products.Include("stock_items").ToList();
 
-            // Поиск (проверяем, не пустой ли текст)
             if (!string.IsNullOrEmpty(TBoxSearch.Text))
             {
                 currentProducts = currentProducts.Where(p => p.product_name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
