@@ -25,18 +25,22 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="{Binding Product.product_name}" FontSize="16" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Size, StringFormat=Размер: {0}}" FontSize="14"/>
                         </StackPanel>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding StockItem.products.product_name}" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding StockItem.Size, StringFormat=Размер: {0}}" FontSize="14" Foreground="Gray" Margin="0,5,0,0"/>
+                        </StackPanel>
 
                         <TextBlock Grid.Column="1" Text="{Binding Quantity}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
                         <TextBlock Grid.Column="2" Text="{Binding TotalPrice, StringFormat={}{0} ₽}" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Foreground="Green"/>
 
-                        <Button Grid.Column="3" Content="Удалить" Click="RemoveFromCart_Click" Tag="{Binding}" Background="IndianRed" Foreground="White"/>
+                        <Button Grid.Column="3" Content="Удалить" Click="RemoveFromCart_Click" Tag="{Binding}" Background="Red"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

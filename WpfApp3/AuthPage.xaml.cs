@@ -34,6 +34,7 @@ namespace WpfApp3
         }
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
+            Manager.CurrentCart.Clear(); // На всякий случай чистим перед входом
             string login = LoginTextBox.Text.Trim();
 
             if (string.IsNullOrEmpty(login))
@@ -44,6 +45,8 @@ namespace WpfApp3
 
             users user = IshbulatovShoesEntities2.GetContext().users
                 .FirstOrDefault(p => p.login == LoginTextBox.Text);
+
+            Manager.CurrentCart.Clear(); // На всякий случай чистим перед входом
 
             if (user != null)
             {

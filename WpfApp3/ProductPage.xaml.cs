@@ -62,7 +62,7 @@ namespace WpfApp3
 
             ProductListView.ItemsSource = currentProducts;
             TableList = currentProducts;
-            ChangePage(0, 0);
+ 
         }
 
         int CountRecords, CountPage, CurrentPage = 0;
@@ -70,48 +70,9 @@ namespace WpfApp3
         List<products> CurrentPageList = new List<products>();
         List<products> TableList;
 
-        public void ChangePage(int direction, int? selectedPage)
-        {
-            if (TableList == null) return;
-
-            CurrentPageList.Clear();
-            CountRecords = TableList.Count;
-            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage;
-
-            if (selectedPage.HasValue && selectedPage >= 0 && selectedPage < CountPage)
-                CurrentPage = selectedPage.Value;
-            else if (direction == 1 && CurrentPage > 0)
-                CurrentPage--;
-            else if (direction == 2 && CurrentPage < CountPage - 1)
-                CurrentPage++;
-            else
-                return;
-
-            int start = CurrentPage * RecordsPage;
-            int end = Math.Min(start + RecordsPage, CountRecords);
-            for (int i = start; i < end; i++)
-                CurrentPageList.Add(TableList[i]);
-
-            PageListBox.Items.Clear();
-            for (int i = 1; i <= CountPage; i++)
-                PageListBox.Items.Add(i);
-            PageListBox.SelectedIndex = CurrentPage;
-            ProductListView.ItemsSource = CurrentPageList;
-            ProductListView.Items.Refresh();
-        }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e) => UpdateProducts();
         private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateProducts();
-
-        private void RightDirButton_Click(object sender, RoutedEventArgs e) => ChangePage(2, null);
-        private void LeftDirButton_Click(object sender, RoutedEventArgs e) => ChangePage(1, null);
-
-        private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (PageListBox.SelectedItem != null)
-                ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
-        }
-
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

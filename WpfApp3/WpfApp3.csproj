@@ -38,12 +38,70 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.3\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.BarCodes, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.BarCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Cryptography, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.License, Version=7.0.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.License.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Shared, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.5.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.5.0\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnalyticsPage.xaml.cs">
+      <DependentUpon>AnalyticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -124,6 +185,10 @@
     <Compile Include="users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="AnalyticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,39 +260,37 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Properties\Images\IMG_KB_164811.png" />
-    <Resource Include="Properties\Images\IMG_KB_164816.png" />
-    <Resource Include="Properties\Images\IMG_KB_185501.png" />
-    <Resource Include="Properties\Images\IMG_KSd_185508.png" />
-    <Resource Include="Properties\Images\IMG_KSd_195207.png" />
-    <Resource Include="Properties\Images\IMG_KSho_185512.png" />
-    <Resource Include="Properties\Images\IMG_KS_195213.png" />
-    <Resource Include="Properties\Images\IMG_KS_195217.png" />
-    <Resource Include="Properties\Images\IMG_KS_195222.png" />
-    <Resource Include="Properties\Images\IMG_MB_174349.png" />
-    <Resource Include="Properties\Images\IMG_MB_191200.png" />
-    <Resource Include="Properties\Images\IMG_MB_191205.png" />
-    <Resource Include="Properties\Images\IMG_MSho_190514.png" />
-    <Resource Include="Properties\Images\IMG_MSho_190518.png" />
-    <Resource Include="Properties\Images\IMG_MSho_191612.png" />
-    <Resource Include="Properties\Images\IMG_MS_185531.png" />
-    <Resource Include="Properties\Images\IMG_MS_185532.png" />
-    <Resource Include="Properties\Images\IMG_MS_185533.png" />
-    <Resource Include="Properties\Images\IMG_WB_170859.png" />
-    <Resource Include="Properties\Images\IMG_WB_170905.png" />
-    <Resource Include="Properties\Images\IMG_WB_170906.png" />
-    <Resource Include="Properties\Images\IMG_WSd_174332.png" />
-    <Resource Include="Properties\Images\IMG_WSd_185156.png" />
-    <Resource Include="Properties\Images\IMG_WSd_185551.png" />
-    <Resource Include="Properties\Images\IMG_WSho_174409.png" />
-    <Resource Include="Properties\Images\IMG_WSho_185202.png" />
-    <Resource Include="Properties\Images\IMG_WSho_185545.png" />
-    <Resource Include="Properties\Images\IMG_WS_174110.png" />
-    <Resource Include="Properties\Images\IMG_WS_185528.png" />
-    <Resource Include="Properties\Images\IMG_WS_185535.png" />
-    <Resource Include="Properties\Images\IMG_WS_185538.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\IMG_KB_164811.png" />
+    <Resource Include="Images\IMG_KB_164816.png" />
+    <Resource Include="Images\IMG_KB_185501.png" />
+    <Resource Include="Images\IMG_KSd_185508.png" />
+    <Resource Include="Images\IMG_KSd_195207.png" />
+    <Resource Include="Images\IMG_KSho_185512.png" />
+    <Resource Include="Images\IMG_KS_195213.png" />
+    <Resource Include="Images\IMG_KS_195217.png" />
+    <Resource Include="Images\IMG_KS_195222.png" />
+    <Resource Include="Images\IMG_MB_174349.png" />
+    <Resource Include="Images\IMG_MB_191200.png" />
+    <Resource Include="Images\IMG_MB_191205.png" />
+    <Resource Include="Images\IMG_MSho_190514.png" />
+    <Resource Include="Images\IMG_MSho_190518.png" />
+    <Resource Include="Images\IMG_MSho_191612.png" />
+    <Resource Include="Images\IMG_MS_185531.png" />
+    <Resource Include="Images\IMG_MS_185532.png" />
+    <Resource Include="Images\IMG_MS_185533.png" />
+    <Resource Include="Images\IMG_WB_170859.png" />
+    <Resource Include="Images\IMG_WB_170905.png" />
+    <Resource Include="Images\IMG_WB_170906.png" />
+    <Resource Include="Images\IMG_WSd_174332.png" />
+    <Resource Include="Images\IMG_WSd_185156.png" />
+    <Resource Include="Images\IMG_WSd_185551.png" />
+    <Resource Include="Images\IMG_WSho_174409.png" />
+    <Resource Include="Images\IMG_WSho_185202.png" />
+    <Resource Include="Images\IMG_WSho_185545.png" />
+    <Resource Include="Images\IMG_WS_174110.png" />
+    <Resource Include="Images\IMG_WS_185528.png" />
+    <Resource Include="Images\IMG_WS_185535.png" />
+    <Resource Include="Images\IMG_WS_185538.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

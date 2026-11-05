@@ -26,9 +26,9 @@ namespace WpfApp3
 
             MainFrame.Navigated += (s, e) =>
             {
-                // 1. Если мы на странице логина — прячем ВСЕ кнопки
                 if (e.Content is AuthPage)
                 {
+                    AnalyticsButton.Visibility = Visibility.Collapsed;
                     CartButton.Visibility = Visibility.Collapsed;
                     OrdersButton.Visibility = Visibility.Collapsed;
                     return;
@@ -36,23 +36,22 @@ namespace WpfApp3
 
                 var user = Manager.CurrentUser;
 
-                // 2. ГОСТЬ (нет юзера или role_id = 0)
-                if (user == null || user.role_id == 0)
+                if (user == null || user.role_id == 0) // Гость
                 {
-                    CartButton.Visibility = Visibility.Collapsed;   // Гость не видит корзину
-                    OrdersButton.Visibility = Visibility.Collapsed; // Гость не видит заказы
+                    AnalyticsButton.Visibility = Visibility.Collapsed;
+                    CartButton.Visibility = Visibility.Collapsed;
+                    OrdersButton.Visibility = Visibility.Collapsed;
                 }
-                // 3. КЛИЕНТ (role_id = 1)
-                else if (user.role_id == 1)
+                else
                 {
-                    CartButton.Visibility = Visibility.Visible;     // Клиент видит корзину
-                    OrdersButton.Visibility = Visibility.Visible;   // Клиент видит свои заказы
-                }
-                // 4. МЕНЕДЖЕР и АДМИН (role_id = 2 или 3)
-                else if (user.role_id == 2 || user.role_id == 3)
-                {
-                    CartButton.Visibility = Visibility.Visible;     // Видят корзину
-                    OrdersButton.Visibility = Visibility.Visible;   // Видят все заказы
+                    CartButton.Visibility = Visibility.Visible;
+                    OrdersButton.Visibility = Visibility.Visible;
+
+                    // АНАЛИТИКУ ВИДИТ ТОЛЬКО АДМИН (role_id == 1)
+                    if (user.role_id == 1)
+                        AnalyticsButton.Visibility = Visibility.Visible;
+                    else
+                        AnalyticsButton.Visibility = Visibility.Collapsed;
                 }
             };
             MainFrame.Navigate(new AuthPage());
@@ -60,7 +59,13 @@ namespace WpfApp3
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
+            Manager.CurrentCart.Clear(); // Очищаем корзину старого пользователя
             Manager.MainFrame.GoBack();
+
+        }
+        private void AnalyticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AnalyticsPage());
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)

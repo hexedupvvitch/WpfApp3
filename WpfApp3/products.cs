@@ -29,7 +29,17 @@ namespace WpfApp3
         public string composition { get; set; }
         public decimal price { get; set; }
 
-        // Строка с доступными размерами (только те, где есть остаток > 0)
+        public string ProductPhotoPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(image_path))
+                    return null; // Если в БД пусто, вернет null (сработает заглушка)
+
+                return "Images/" + image_path; // ДОПИСЫВАЕМ ПАПКУ
+            }
+        }
+
         public string AvailableSizes
         {
             get
@@ -61,5 +71,18 @@ namespace WpfApp3
         public virtual manufacturers manufacturers { get; set; }
         public virtual subcategories subcategories { get; set; }
         public virtual ICollection<stock_items> stock_items { get; set; }
+
+        // Цвет фона для карточки (светло-красный, если остаток <= 3)
+        public System.Windows.Media.Brush RowBackground
+        {
+            get
+            {
+                if (TotalQuantity <= 3)
+                    return new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.LightCoral);
+
+                return System.Windows.Media.Brushes.Transparent;
+            }
+        }
     }
+
 }
